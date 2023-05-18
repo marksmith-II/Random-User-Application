@@ -20,9 +20,9 @@ class UserDetailPage extends StatelessWidget {
           shadowColor: Colors.blueAccent,
           child: Column(
             children: [
-              const SizedBox(height: 80),
+              const SizedBox(height: 140),
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
                 child: Image.network(user.picture.large),
               ),
               // const SizedBox(height: 20),
@@ -111,16 +111,6 @@ class UserDetailPage extends StatelessWidget {
                           color: Colors.grey,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
                       const Text(
                         "Address:",
                         textAlign: TextAlign.left,
@@ -157,6 +147,7 @@ class UserDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
+
               // const SizedBox(height: 25),
             ],
           ),
