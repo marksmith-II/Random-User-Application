@@ -11,14 +11,49 @@ class UserDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(user.fullName),
+        backgroundColor: Colors.black54,
+        shadowColor: Colors.blue,
       ),
       body: Center(
         child: Column(
           children: [
-            Image.network(user.picture.thumbnail),
-            Text(user.fullName),
-            Text(user.email),
-            Text(user.location.country),
+            SizedBox(height: 100),
+            Image.network(user.picture.large),
+            SizedBox(height: 10),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Text(
+                      textAlign: TextAlign.left,
+                      user.fullName,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    Text(
+                      textAlign: TextAlign.left,
+                      user.email,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      textAlign: TextAlign.left,
+                      user.location.country,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
