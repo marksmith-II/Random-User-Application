@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/user.dart';
 import '../services/user_api.dart';
+import '../sceen/user_detail_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -86,23 +87,33 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 final user = filteredUsers[index];
                 final imageUrl = user.picture.thumbnail;
-                return Card(
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  child: ListTile(
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(180),
-                      child: Image.network(imageUrl),
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserDetailPage(user: user),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
-                    title: Text(user.fullName),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(user.location.country),
-                        Text(user.email),
-                      ],
+                    child: ListTile(
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(180),
+                        child: Image.network(imageUrl),
+                      ),
+                      title: Text(user.fullName),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(user.location.country),
+                          Text(user.email),
+                        ],
+                      ),
                     ),
                   ),
                 );
