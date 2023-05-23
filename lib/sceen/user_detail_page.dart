@@ -174,10 +174,11 @@ class UserDetailPage extends StatelessWidget {
                                               fontSize: 16.0,
                                               color: Colors.black)),
                                       TextSpan(
-                                          text: "Email: ${user.email}",
-                                          style: const TextStyle(
-                                              fontSize: 16.0,
-                                              color: Colors.black)),
+                                        text: "Email: ${user.email}",
+                                        style: const TextStyle(
+                                            fontSize: 16.0,
+                                            color: Colors.black),
+                                      )
                                     ]),
                               ),
                               actions: [
