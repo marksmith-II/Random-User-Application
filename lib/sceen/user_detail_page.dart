@@ -1,5 +1,9 @@
+// ignore_for_file: use_function_type_syntax_for_parameters
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../model/user.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserDetailPage extends StatelessWidget {
   final User user;
@@ -145,41 +149,50 @@ class UserDetailPage extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
+                            String? encodeQueryParameters(
+                                Map<String, String> params) {
+                              return params.entries
+                                  .map((MapEntry<String, String> e) =>
+                                      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent}')
+                                  .join('&');
+                            }
+
+                            final Uri emailUri = Uri(
+                                scheme: 'mailto',
+                                path: user.email,
+                                query: encodeQueryParameters(<String, String>{
+                                  'subject': 'Give us a shout!',
+                                  'body': 'Yo yo my guys, sup!?'
+                                }));
                             return AlertDialog(
                               title: const Text("Contact Information"),
                               content: Text.rich(
-                                TextSpan(
-                                    // text: '',
-                                    // style: const TextStyle(
-                                    //     fontSize: 16.0, color: Colors.black),
-                                    children: [
-                                      TextSpan(
-                                          text: "Phone: ${user.phone}",
-                                          style: const TextStyle(
-                                              fontSize: 16.0,
-                                              color: Colors.black)),
-                                      const TextSpan(
-                                          text: '\n',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              color: Colors.black)),
-                                      TextSpan(
-                                          text: "Cell:  ${user.cell}",
-                                          style: const TextStyle(
-                                              fontSize: 16.0,
-                                              color: Colors.black)),
-                                      const TextSpan(
-                                          text: '\n',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              color: Colors.black)),
-                                      TextSpan(
-                                        text: "Email: ${user.email}",
-                                        style: const TextStyle(
-                                            fontSize: 16.0,
-                                            color: Colors.black),
-                                      )
-                                    ]),
+                                TextSpan(children: [
+                                  TextSpan(
+                                    text: "Phone: ${user.phone}",
+                                    style: const TextStyle(
+                                        fontSize: 16.0, color: Colors.black),
+                                  ),
+                                  const TextSpan(
+                                      text: '\n',
+                                      style: TextStyle(
+                                          fontSize: 16.0, color: Colors.black)),
+                                  TextSpan(
+                                    text: "Cell:  ${user.cell}",
+                                    style: const TextStyle(
+                                        fontSize: 16.0, color: Colors.black),
+                                  ),
+                                  const TextSpan(
+                                      text: '\n',
+                                      style: TextStyle(
+                                          fontSize: 16.0, color: Colors.black)),
+                                  TextSpan(
+                                      text: "Email: ${user.email}",
+                                      style: const TextStyle(
+                                          fontSize: 16.0, color: Colors.black),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () => launchUrl(emailUri)),
+                                ]),
                               ),
                               actions: [
                                 TextButton(

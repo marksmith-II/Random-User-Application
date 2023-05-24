@@ -84,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.builder(
               addRepaintBoundaries: true,
               padding: const EdgeInsets.all(10.0),
+              itemCount: userForDisplay.take(10).length,
               itemBuilder: (context, index) {
                 final user = filteredUsers[index];
                 final imageUrl = user.picture.thumbnail;
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-              itemCount: userForDisplay.length,
+              // itemCount: userForDisplay.length -1 ,
             ),
           ),
         ],
