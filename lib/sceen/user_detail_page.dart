@@ -165,7 +165,7 @@ class UserDetailPage extends StatelessWidget {
                               },
                             );
                             final Uri telLaunchUri =
-                                Uri(scheme: 'tell', path: user.cell);
+                                Uri(scheme: 'tel', path: user.cell);
                             final Uri emailUri = Uri(
                               scheme: 'mailto',
                               path: user.email,
