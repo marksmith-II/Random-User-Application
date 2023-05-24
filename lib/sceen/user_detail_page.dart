@@ -145,7 +145,6 @@ class UserDetailPage extends StatelessWidget {
                       elevation: 5.0,
                       child: const Icon(Icons.contact_phone),
                       onPressed: () {
-                        // Show the contact information popup.
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -157,31 +156,46 @@ class UserDetailPage extends StatelessWidget {
                                   .join('&');
                             }
 
+                            final Uri smsLaunchUri = Uri(
+                              scheme: 'sms',
+                              path: user.cell,
+                              queryParameters: <String, String>{
+                                'body': Uri.encodeComponent(
+                                    'Example Subject & Symbols are allowed!'),
+                              },
+                            );
+                            final Uri telLaunchUri =
+                                Uri(scheme: 'tell', path: user.cell);
                             final Uri emailUri = Uri(
-                                scheme: 'mailto',
-                                path: user.email,
-                                query: encodeQueryParameters(<String, String>{
-                                  'subject': 'Give us a shout!',
-                                  'body': 'Yo yo my guys, sup!?'
-                                }));
+                              scheme: 'mailto',
+                              path: user.email,
+                              query: encodeQueryParameters(<String, String>{
+                                'subject': 'Give us a shout!',
+                                'body': 'Yo yo my guys, sup!?'
+                              }),
+                            );
                             return AlertDialog(
                               title: const Text("Contact Information"),
                               content: Text.rich(
                                 TextSpan(children: [
                                   TextSpan(
-                                    text: "Phone: ${user.phone}",
-                                    style: const TextStyle(
-                                        fontSize: 16.0, color: Colors.black),
-                                  ),
+                                      text: "Phone: ${user.phone}",
+                                      style: const TextStyle(
+                                          fontSize: 16.0, color: Colors.black),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap =
+                                            () => launchUrl(telLaunchUri)),
                                   const TextSpan(
                                       text: '\n',
                                       style: TextStyle(
                                           fontSize: 16.0, color: Colors.black)),
                                   TextSpan(
-                                    text: "Cell:  ${user.cell}",
-                                    style: const TextStyle(
-                                        fontSize: 16.0, color: Colors.black),
-                                  ),
+                                      text: "Cell:  ${user.cell}",
+                                      style: const TextStyle(
+                                          fontSize: 16.0, color: Colors.black),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap =
+                                            () => launchUrl(smsLaunchUri)),
                                   const TextSpan(
                                       text: '\n',
                                       style: TextStyle(
