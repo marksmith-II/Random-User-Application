@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       } else {
         return user.gender == selectedFilter.toLowerCase();
       }
-    }).toList();
+    }).toList(growable: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.builder(
               addRepaintBoundaries: true,
               padding: const EdgeInsets.all(10.0),
-              itemCount: userForDisplay.take(10).length,
+              // itemCount: userForDisplay.length,
               itemBuilder: (context, index) {
                 final user = filteredUsers[index];
                 final imageUrl = user.picture.thumbnail;
@@ -112,14 +112,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(user.location.country),
-                          Text(user.email),
                         ],
                       ),
                     ),
                   ),
                 );
               },
-              // itemCount: userForDisplay.length -1 ,
+
+              itemCount: users.isNotEmpty ? filteredUsers.length : 0,
+              // physics: const ClampingScrollPhysics(),
             ),
           ),
         ],

@@ -161,7 +161,7 @@ class UserDetailPage extends StatelessWidget {
                               path: user.cell,
                               queryParameters: <String, String>{
                                 'body': Uri.encodeComponent(
-                                    'Example Subject & Symbols are allowed!'),
+                                    'Texting Texting Texting!'),
                               },
                             );
                             final Uri telLaunchUri =

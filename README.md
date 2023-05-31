@@ -1,16 +1,7 @@
 # flutterapp
 
-A new Flutter project.
+Random People flutter app
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is my 1st flutter app. I am making an API call, displaying it in list view and using navigation to navigate to a detail page. Features: List View, Detail View, Navigation/Routing, Search/Filter, Buttons and pop ups, clickable phone number that prompt phone calls, clickable cell number that prompts a sms text message and clickabe email address that prompt an email.
