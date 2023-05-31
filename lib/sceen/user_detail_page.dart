@@ -161,11 +161,11 @@ class UserDetailPage extends StatelessWidget {
                               path: user.cell,
                               queryParameters: <String, String>{
                                 'body': Uri.encodeComponent(
-                                    'Example Subject & Symbols are allowed!'),
+                                    'Texting Texting Texting!'),
                               },
                             );
                             final Uri telLaunchUri =
-                                Uri(scheme: 'tell', path: user.cell);
+                                Uri(scheme: 'tel', path: user.cell);
                             final Uri emailUri = Uri(
                               scheme: 'mailto',
                               path: user.email,
